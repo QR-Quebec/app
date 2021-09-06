@@ -1,0 +1,15 @@
+.paypal-button--disabled-overlay {
+    position: relative;
+    margin-bottom: -8px;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: 50%;
+        z-index: 1000;
+    }
+}

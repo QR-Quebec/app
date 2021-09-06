@@ -1,0 +1,102 @@
+$primary: hsl(216, 98%, 52%);
+$secondary: hsl(208, 7%, 46%);
+$success: hsl(152, 69%, 31%);
+$info: hsl(190, 90%, 50%);
+$warning: hsl(45, 100%, 51%);
+$danger: hsl(354, 70%, 54%);
+$light: hsl(210, 17%, 98%);
+$dark: hsl(210, 11%, 15%);
+
+$qrqc: hsl(218, 40%, 32%);
+$active: hsl(210, 17%, 98%);
+$inactive: hsl(208, 24%, 55%);
+
+$muted: hsl(208, 7%, 46%);
+$disabled: hsl(208, 7%, 80%);
+$great-success: hsl(120, 100%, 30%);
+$great-warning: hsl(55, 92%, 50%);
+$great-danger: hsl(0, 100%, 30%);
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+    "qrqc": $qrqc,
+    "active": $active,
+    "inactive": $inactive,
+    "muted": $muted,
+    "great-success": $great-success,
+    "great-warning": $great-warning,
+    "great-danger": $great-danger,
+) !default;
+
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+:root {
+    --header-height: 62px;
+    --footer-height: 90px;
+}
+
+//Pas de scrollbar pour avoir l'air encore plus mobile
+html,
+body {
+    height: 100%;
+}
+
+body {
+    overflow-y: scroll;
+    font-size: 18px !important;
+}
+
+.btn-fab {
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+}
+
+.btn-fab-1st {
+    position: fixed;
+    bottom: 115px;
+    right: 15px;
+}
+
+.btn-fab-2nd {
+    position: fixed;
+    bottom: 115px;
+    right: 90px;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+//Utilities
+.debug {
+    outline: 1px dashed hsl(0, 100%, 50%);
+}
+
+.debug2 {
+    outline: 1px dashed hsl(120, 100%, 25%);
+}
+
+.debug3 {
+    outline: 1px dashed hsl(240, 100%, 50%);
+}
+
+.debug4 {
+    outline: 1px dashed hsl(300, 100%, 25%);
+}
+
+.debug5 {
+    outline: 1px dashed hsl(60, 100%, 50%);
+}

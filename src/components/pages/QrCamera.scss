@@ -1,0 +1,26 @@
+.webcam-container {
+    overflow: hidden;
+
+    .webcam-viewfinder {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 70vmin;
+        height: 70vmin;
+        z-index: 999;
+    }
+
+    video {
+        position: absolute;
+        top: var(--header-height);
+
+        width: calc(100vw - var(--scrollbar-width));
+        height: calc(100vh - var(--header-height) - var(--footer-height));
+
+        object-fit: cover;
+
+        background-color: transparent;
+        //overflow: hidden;
+    }
+}

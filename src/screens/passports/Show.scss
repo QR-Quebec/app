@@ -1,0 +1,33 @@
+.passport-show--container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (orientation: landscape) {
+    .passport-show--container {
+        flex-direction: row;
+
+        .passport-show--info {
+            margin-top: 1rem;
+            margin-left: 1rem;
+        }
+    }
+}
+
+.passport-show--qr {
+    margin: 1rem 0 0.5rem 0;
+}
+
+.passport-show--name {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.passport-show--verified {
+    color: var(--bs-success);
+    font-size: 1.2rem;
+
+    svg {
+        vertical-align: text-top;
+    }
+}
