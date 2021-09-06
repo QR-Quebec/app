@@ -1,2 +1,2 @@
-ROBOCOPY ./build ../frontend/public /MIR /XF index.php
+ROBOCOPY ./build ../backend/public /MIR /XF index.php
 EXIT 0
