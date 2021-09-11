@@ -1,6 +1,7 @@
 //Libs
 import * as localForage from 'localforage';
 import * as aesjs from 'aes-js';
+import * as sha1 from 'sha1';
 import { v4 as uuidv4 } from 'uuid';
 import { arrayMove } from 'react-movable';
 
@@ -26,6 +27,10 @@ function qrDataKey() {
   let key = strKey?.split('').map(s => s.charCodeAt(0));
 
   return key;
+}
+
+function qrDataHash(qrData: String) {
+  return sha1(qrData);
 }
 
 function encryptQrData(qrData) {
@@ -72,12 +77,23 @@ export const setPassports = async (passports: PassportList): Promise<void> => {
   await localForage.setItem('passportCount', cleanPassports.length);
 }
 
+export const passportExists = async (qrData: string): Promise<boolean> => {
+  let passports = await getPassports();
+
+  passports = passports.filter((passport) => {
+    return passport.qrHash === qrDataHash(qrData);
+  });
+
+  return passports.length !== 0;
+}
+
 export const addPassport = async (name: string, qrData: string): Promise<void> => {
   let passports = await getPassports();
 
   let newPassport = {} as PassportListItem;
   newPassport.name = name;
   newPassport.qrData = qrData;
+  newPassport.qrHash = qrDataHash(qrData);
   newPassport.uid = Date.now().toString();
 
   passports.push(newPassport);

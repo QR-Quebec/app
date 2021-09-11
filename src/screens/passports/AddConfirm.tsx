@@ -21,7 +21,7 @@ import { decodeSHC } from 'lib/shc';
 import { PassportData } from 'types/PassportData';
 
 //Data
-import { addPassport } from 'lib/data';
+import { passportExists, addPassport } from 'lib/data';
 
 type LocationState = { qrData: string };
 type PathParams = {};
@@ -48,6 +48,12 @@ class PassportsAddConfirm extends Component<Props, State> {
   }
 
   async addPassport() {
+    if (await passportExists(this.props.location.state.qrData)) {
+      alert('Cette preuve de vaccination est déjà stockée dans QR Québec.');
+
+      return;
+    }
+
     await addPassport(this.state.passportData.patient.names[0], this.props.location.state.qrData);
 
     this.props.history.push('/presenter');
