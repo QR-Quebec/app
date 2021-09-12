@@ -5,7 +5,11 @@ function dateFromString(date: string) {
     return new Date(result.getTime() + userTimezoneOffset);
 }
 
-export const formatLongDate = (date: Date | string, hideYear: boolean = false): string => {
+export const formatLongDate = (date: Date | string): string => {
+    if (date === null) {
+        return 'jamais';
+    }
+
     if (typeof date === 'string') {
         date = dateFromString(date);
     }
@@ -16,12 +20,16 @@ export const formatLongDate = (date: Date | string, hideYear: boolean = false): 
 
     longDate += date.getDate() + (date.getDate() === 1 ? 'er' : '') + ' ';
     longDate += months[date.getMonth()] + ' ';
-    longDate += !hideYear ? date.getFullYear() : '⚹⚹⚹⚹';
+    longDate += date.getFullYear();
 
     return longDate;
 }
 
 export const formatShortTime = (time: Date | string): string => {
+    if (time === null) {
+        return 'jamais';
+    }
+
     if (typeof time === 'string') {
         time = dateFromString(time);
     }

@@ -222,18 +222,22 @@ class PassportContent extends Component<Props, State> {
               </div>
             </li>
 
-            <li className="list-group-item d-flex align-items-center">
-              <div className="me-3">
-                <CalendarCheck height="36px" width="36px" color={colors.qrqc} />
-              </div>
+            {this.state.passportData.signature.issuedAt &&
+              <li className="list-group-item d-flex align-items-center">
+                <div className="me-3">
+                  <CalendarCheck height="36px" width="36px" color={colors.qrqc} />
+                </div>
 
-              <div className="flex-fill d-flex flex-column">
-                <div className="passport-content--title">Signée le {formatLongDate(this.state.passportData.signature.issuedAt)}</div>
-                <div className="passport-content--subtitle">Signée à {formatShortTime(this.state.passportData.signature.issuedAt)}</div>
-              </div>
-            </li>
+                <div className="flex-fill d-flex flex-column">
+                  <div className="passport-content--title">Signée le {formatLongDate(this.state.passportData.signature.issuedAt)}</div>
+                  <div className="passport-content--subtitle">Signée à {formatShortTime(this.state.passportData.signature.issuedAt)}</div>
+                </div>
+              </li>
+            }
           </ol>
         </div>
+
+        <br />
       </div>
     );
   }

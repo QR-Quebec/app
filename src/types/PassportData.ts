@@ -9,7 +9,7 @@ export type PassportData = {
 
 export type PassportDataSignature = {
     issuer: string,
-    issuedAt: Date,
+    issuedAt: Date | null,
 };
 
 export type PassportDataPaatient = {

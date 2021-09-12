@@ -102,7 +102,7 @@ function parseSHC(header: any, payload: any, qrData: string) {
             //Signature
             result.signature = {
                 issuer: payload.iss,
-                issuedAt: new Date(payload.iat * 1000),
+                issuedAt: payload.iat ? new Date(payload.iat * 1000) : null,
             };
 
             //Trouver le patient
