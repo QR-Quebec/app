@@ -137,12 +137,16 @@ class QrCamera extends Component<Props, State> {
     }
   }
 
-  async scanResult(qrData: string) {
+  async scanResult(scannedData: string) {
+    let qrData: string | Array<string>;
+
     //this.qrScanner?.stop();
     //this.qrScanner?.destroy();
     //this.qrScanner = undefined;
 
-    if (qrData) {
+    if (scannedData) {
+      qrData = scannedData;
+
       try {
         if (qrData && qrData.startsWith('shc:/')) {
           const shcData = qrData.substr(5);
@@ -152,7 +156,6 @@ class QrCamera extends Component<Props, State> {
           if (shcParts.length === 3) {
             let shcPartNum: number = Number.parseInt(shcParts[0]);
             let shcPartCount: number = Number.parseInt(shcParts[1]);
-            let shcPartData = shcParts[2];
 
             //Taille différente, on reset les chunks
             if (shcPartCount !== this.state.chunks.length) {
@@ -166,7 +169,7 @@ class QrCamera extends Component<Props, State> {
             //Placer le data dans le chunk
             let newChunks = this.state.chunks;
 
-            newChunks[shcPartNum-1] = shcPartData;
+            newChunks[shcPartNum-1] = qrData;
 
             this.setState({
               chunks: newChunks,
@@ -179,7 +182,7 @@ class QrCamera extends Component<Props, State> {
             }
 
             //On a tous les morceaux, on réassemble
-            qrData = 'shc:/' + newChunks.join('');
+            qrData = newChunks;
           }
         } else {
           this.props.history.push(this.props.routeOnNotShc, { qrData: qrData.substring(0, 200) });

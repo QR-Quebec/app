@@ -222,7 +222,40 @@ function parseSHC(header: any, payload: any, qrData: string) {
     }
 }
 
-export async function decodeSHC(qrData: string) {
+export async function decodeSHC(qrData: string | Array<string>) {
+    //Si c'est une array, on réassemble
+    if (qrData && Array.isArray(qrData)) {
+        let newQrData = '';
+
+        qrData.forEach((chunk, index) => {
+            const shcData = chunk.substr(5);
+            const shcParts = shcData.split('/');
+
+            //Codes QR pas vraiment chunké ?
+            if (shcParts.length !== 3) {
+                throw new Error('Chunked SHC was not really chunked.');
+            }
+
+            let shcPartNum: number = Number.parseInt(shcParts[0]);
+            let shcPartCount: number = Number.parseInt(shcParts[1]);
+
+            //Sanity checks
+            if (shcPartCount !== qrData.length) {
+                throw new Error('Chunked SHC part count mismatch.');
+            }
+
+            if (shcPartNum !== index+1) {
+                throw new Error('Chunked SHC part order mismatch.');
+            }
+
+            //Assembler
+            newQrData += shcParts[2];
+        });
+
+        //String finale
+        qrData = 'shc:/' + newQrData;
+    }
+
     if (qrData && qrData.startsWith('shc:/')) {
         const shcData = qrData.substr(5);
         const shcParts = shcData.split('/');
