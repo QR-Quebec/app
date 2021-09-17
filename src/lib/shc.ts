@@ -229,7 +229,7 @@ export async function decodeSHC(qrData: string) {
 
         //Codes QR chunké pas supportés pour le moment
         if (shcParts.length !== 1) {
-            throw new Error('Chunked SHC not supported yet.');
+            throw new Error('Chunked SHC should have been assembled first.');
         }
 
         const jws: string = qrDataToJWS(shcParts[0]);

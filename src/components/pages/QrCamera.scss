@@ -11,6 +11,17 @@
         z-index: 999;
     }
 
+    .webcam-chunks {
+        position: absolute;
+        top: var(--header-height);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
     video {
         position: absolute;
         top: var(--header-height);
