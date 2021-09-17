@@ -29,7 +29,11 @@ function qrDataKey() {
   return key;
 }
 
-function qrDataHash(qrData: String) {
+function qrDataHash(qrData: string | Array<string>) {
+  if (Array.isArray(qrData)) {
+    qrData = qrData.join('');
+  }
+
   return sha1(qrData);
 }
 
@@ -89,7 +93,7 @@ export const setPassports = async (passports: PassportList): Promise<void> => {
   await localForage.setItem('passportCount', cleanPassports.length);
 }
 
-export const passportExists = async (qrData: string): Promise<boolean> => {
+export const passportExists = async (qrData: string | Array<string>): Promise<boolean> => {
   let passports = await getPassports();
 
   passports = passports.filter((passport) => {
@@ -99,7 +103,7 @@ export const passportExists = async (qrData: string): Promise<boolean> => {
   return passports.length !== 0;
 }
 
-export const addPassport = async (name: string, qrData: string): Promise<void> => {
+export const addPassport = async (name: string, qrData: string | Array<string>): Promise<void> => {
   let passports = await getPassports();
 
   let newPassport = {} as PassportListItem;

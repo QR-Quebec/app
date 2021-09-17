@@ -23,7 +23,7 @@ import { PassportData } from 'types/PassportData';
 //Data
 import { passportExists, addPassport } from 'lib/data';
 
-type LocationState = { qrData: string };
+type LocationState = { qrData: string | Array<string> };
 type PathParams = {};
 type Props = RouteComponentProps<PathParams, StaticContext, LocationState> & {};
 type State = { passportData: PassportData };

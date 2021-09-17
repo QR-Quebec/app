@@ -4,7 +4,7 @@ export type PassportData = {
     patient: PassportDataPaatient,
     doses: PassportDataDoses,
     testResults: PassportDataTestResults,
-    qrData: string,
+    qrData: string | Array<string>,
 };
 
 export type PassportDataSignature = {
