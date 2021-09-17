@@ -29,11 +29,21 @@ function qrDataKey() {
   return key;
 }
 
-function qrDataHash(qrData: String) {
+function qrDataHash(qrData: string | Array<string>) {
+  if (Array.isArray(qrData)) {
+    qrData = qrData.join('');
+  }
+
   return sha1(qrData);
 }
 
-function encryptQrData(qrData) {
+function encryptQrData(qrData : string | Array<string>) {
+  if (Array.isArray(qrData)) {
+    return qrData.map((chunk) => {
+      return encryptQrData(chunk);
+    });
+  }
+
   var textBytes = aesjs.utils.utf8.toBytes(qrData);
   var aesCtr = new aesjs.ModeOfOperation.ctr(qrDataKey());
   var encryptedBytes = aesCtr.encrypt(textBytes);
@@ -42,7 +52,13 @@ function encryptQrData(qrData) {
   return encryptedHex;
 }
 
-function decryptQrData(encryptedQrData) {
+function decryptQrData(encryptedQrData : string | Array<string>) {
+  if (Array.isArray(encryptedQrData)) {
+    return encryptedQrData.map((chunk) => {
+      return decryptQrData(chunk);
+    });
+  }
+
   var encryptedBytes = aesjs.utils.hex.toBytes(encryptedQrData);
   var aesCtr = new aesjs.ModeOfOperation.ctr(qrDataKey());
   var decryptedBytes = aesCtr.decrypt(encryptedBytes);
@@ -77,7 +93,7 @@ export const setPassports = async (passports: PassportList): Promise<void> => {
   await localForage.setItem('passportCount', cleanPassports.length);
 }
 
-export const passportExists = async (qrData: string): Promise<boolean> => {
+export const passportExists = async (qrData: string | Array<string>): Promise<boolean> => {
   let passports = await getPassports();
 
   passports = passports.filter((passport) => {
@@ -87,7 +103,7 @@ export const passportExists = async (qrData: string): Promise<boolean> => {
   return passports.length !== 0;
 }
 
-export const addPassport = async (name: string, qrData: string): Promise<void> => {
+export const addPassport = async (name: string, qrData: string | Array<string>): Promise<void> => {
   let passports = await getPassports();
 
   let newPassport = {} as PassportListItem;

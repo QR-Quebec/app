@@ -27,7 +27,7 @@ import { formatLongDate, formatAgo, formatGender, formatVaccine, formatTestResul
 //Types
 import { PassportData, PassportDataDose, PassportDataTestResult } from 'types/PassportData';
 
-type Props = { qrData: string };
+type Props = { qrData: string | Array<string> };
 type State = { passportData: PassportData };
 
 class PassportContent extends Component<Props, State> {
