@@ -59,16 +59,28 @@ body {
     height: 60px;
 }
 
-.btn-fab-1st {
+.btn-fab-right-1st {
     position: fixed;
     bottom: 115px;
     right: 15px;
 }
 
-.btn-fab-2nd {
+.btn-fab-right-2nd {
     position: fixed;
     bottom: 115px;
     right: 90px;
+}
+
+.btn-fab-left-1st {
+    position: fixed;
+    bottom: 115px;
+    left: 15px;
+}
+
+.btn-fab-left-2nd {
+    position: fixed;
+    bottom: 115px;
+    left: 90px;
 }
 
 .no-select {

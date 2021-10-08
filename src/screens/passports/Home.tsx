@@ -93,12 +93,12 @@ class PassportsHome extends Component<Props, State> {
       }
 
         <Link to="/presenter/ajouter">
-          <button aria-label="Ajouter une preuve de vaccination" type="button" className="btn btn-qrqc btn-fab btn-fab-1st"><PlusRegular height="32px" width="32px" color={colors.active} /></button>
+          <button aria-label="Ajouter une preuve de vaccination" type="button" className="btn btn-qrqc btn-fab btn-fab-right-1st"><PlusRegular height="32px" width="32px" color={colors.active} /></button>
         </Link>
 
         {process.env.REACT_APP_ENV === 'development' &&
           <Link to="/test">
-            <button aria-label="Test" type="button" className="btn btn-qrqc btn-fab btn-fab-2nd"><CodeRegular height="32px" width="32px" color="red" /></button>
+            <button aria-label="Test" type="button" className="btn btn-qrqc btn-fab btn-fab-right-2nd"><CodeRegular height="32px" width="32px" color="red" /></button>
           </Link>
         }
       </div>

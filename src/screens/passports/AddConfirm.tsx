@@ -88,10 +88,10 @@ class PassportsAddConfirm extends Component<Props, State> {
       <div className="container-fluid">
         <PassportContent qrData={this.props.location.state.qrData} />
 
-        <button aria-label="Ajouter cette preuve de vaccination" type="button" className="btn btn-qrqc btn-fab btn-fab-1st" onClick={this.addPassport}><CheckRegular height="28px" width="28px" color={colors.active} /></button>
+        <button aria-label="Ajouter cette preuve de vaccination" type="button" className="btn btn-qrqc btn-fab btn-fab-right-1st" onClick={this.addPassport}><CheckRegular height="28px" width="28px" color={colors.active} /></button>
 
         <Link to="/presenter">
-          <button aria-label="Ne pas ajouter cette preuve de vaccination" type="button" className="btn btn-qrqc btn-fab btn-fab-2nd"><TimesRegular height="28px" width="28px" color={colors.active} /></button>
+          <button aria-label="Ne pas ajouter cette preuve de vaccination" type="button" className="btn btn-qrqc btn-fab btn-fab-right-2nd"><TimesRegular height="28px" width="28px" color={colors.active} /></button>
         </Link>
       </div>
     );
