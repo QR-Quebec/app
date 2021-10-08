@@ -3,11 +3,16 @@
     color: var(--bs-qrqc);
     font-size: 1.5rem;
     font-weight: 600;
+
+    small {
+        font-size: 1.2rem;
+    }
 }
 
 .help-home--ks {
     width: 75%;
     margin: 0 auto;
+    max-width: 250px !important;
 }
 
 .help-home--icon {

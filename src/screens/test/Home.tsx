@@ -12,10 +12,6 @@ class TestHome extends Component<Props, State> {
 
     return (
       <div className="container-fluid">
-        <br />
-        <Link to="/test/api">
-          <button type="button" className="btn btn-qrqc w-100 mb-3">API</button>
-        </Link>
       </div>
     );
   }

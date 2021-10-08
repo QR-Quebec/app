@@ -26,8 +26,6 @@ import PassportsHome from 'screens/passports/Home';
 //Pages secondaires (loadées en BG)
 const PassportsAdd = React.lazy(() => import(/* webpackPrefetch: true */ "./passports/_Pages").then((module) => ({ default: module.PassportsAdd })));
 const PassportsAddConfirm = React.lazy(() => import(/* webpackPrefetch: true */ "./passports/_Pages").then((module) => ({ default: module.PassportsAddConfirm })));
-const PassportsAddLimit = React.lazy(() => import(/* webpackPrefetch: true */ "./passports/_Pages").then((module) => ({ default: module.PassportsAddLimit })));
-const PassportsAddLimitPurchased = React.lazy(() => import(/* webpackPrefetch: true */ "./passports/_Pages").then((module) => ({ default: module.PassportsAddLimitPurchased })));
 const PassportsShow = React.lazy(() => import(/* webpackPrefetch: true */ "./passports/_Pages").then((module) => ({ default: module.PassportsShow })));
 const PassportsDetail = React.lazy(() => import(/* webpackPrefetch: true */ "./passports/_Pages").then((module) => ({ default: module.PassportsDetail })));
 const PassportsInvalidNotShc = React.lazy(() => import(/* webpackPrefetch: true */ "./passports/_Pages").then((module) => ({ default: module.PassportsInvalidNotShc })));
@@ -37,14 +35,11 @@ const PassportsInvalidSignature = React.lazy(() => import(/* webpackPrefetch: tr
 const PassportsInvalidError = React.lazy(() => import(/* webpackPrefetch: true */ "./passports/_Pages").then((module) => ({ default: module.PassportsInvalidError })));
 
 const HelpHome = React.lazy(() => import(/* webpackPrefetch: true */ "./help/_Pages").then((module) => ({ default: module.HelpHome })));
-const HelpRestorePurchases = React.lazy(() => import(/* webpackPrefetch: true */ "./help/_Pages").then((module) => ({ default: module.HelpRestorePurchases })));
 
 let TestHome: any = null;
-let TestApi: any = null;
 
 if (process.env.REACT_APP_ENV === 'development') {
   TestHome = React.lazy(() => import("./test/_Pages").then((module) => ({ default: module.TestHome })));
-  TestApi = React.lazy(() => import("./test/_Pages").then((module) => ({ default: module.TestApi })));
 }
 
 const ErrorNotFound = React.lazy(() => import(/* webpackPrefetch: true */ "./error/_Pages").then((module) => ({ default: module.ErrorNotFound })));
@@ -119,8 +114,6 @@ class App extends Component<Props, State> {
                       <Route path="/presenter/ajouter/camera" exact component={PassportsAdd} />
                       <Route path="/presenter/confirmer" exact component={PassportsAddConfirm} />
                       <Route path="/presenter/ajouter/confirmer" exact component={PassportsAddConfirm} />
-                      <Route path="/presenter/ajouter/limite" exact component={PassportsAddLimit} />
-                      <Route path="/presenter/ajouter/limite/merci" exact component={PassportsAddLimitPurchased} />
                       <Route path="/presenter/qr/:uid" exact component={PassportsShow} />
                       <Route path="/presenter/qr/:uid/detail" exact component={PassportsDetail} />
                       <Route path="/presenter/invalide/format" exact component={PassportsInvalidNotShc} />
@@ -130,13 +123,9 @@ class App extends Component<Props, State> {
                       <Route path="/presenter/invalide/erreur" exact component={PassportsInvalidError} />
 
                       <Route path="/aide" exact component={HelpHome} />
-                      <Route path="/aide/recuperer" exact component={HelpRestorePurchases} />
 
                       {(process.env.REACT_APP_ENV === 'development') &&
                         <Route path="/test" exact component={TestHome} />
-                      }
-                      {(process.env.REACT_APP_ENV === 'development') &&
-                        <Route path="/test/api" exact component={TestApi} />
                       }
 
                       <Route path="*" component={ErrorNotFound} />

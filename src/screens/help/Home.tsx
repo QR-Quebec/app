@@ -13,25 +13,35 @@ import LogoKyber from 'assets/img/kyber_studio.png';
 import { ReactComponent as LinkIcon } from 'assets/svg/fontawesome-5-pro/link-solid.svg';
 import { ReactComponent as EmailIcon } from 'assets/svg/fontawesome-5-pro/envelope-regular.svg';
 
+//Components
+import PaypalButton from 'components/ui/PaypalButton'
 
 type Props = {};
-type State = {};
+type State = { price: string };
 
 class HelpHome extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      price: '0.99',
+    };
+  }
+
   render() {
     return (
       <div className="container-fluid help-home">
         <div className="card mt-3">
           <div className="card-header">
-            <h2 className="help-home--title">QR Québec</h2>
+            <h2 className="help-home--title">QR Québec <small>&bull; Version {PackageJson.version}</small></h2>
           </div>
 
           <div className="card-body">
-            Version {PackageJson.version}
+            <div className="text-center">
+              Une app fièrement Québécoise par:
+            </div>
 
             <div className="text-center mt-3">
-              Une app fièrement Québécoise par:
-
               <a href="https://kyber.studio" target="_blank" rel="noreferrer">
                 <img className="help-home--ks" src={LogoKyber} alt="Kyber Studio" />
               </a>
@@ -74,17 +84,15 @@ class HelpHome extends Component<Props, State> {
 
         <div className="card mt-3">
           <div className="card-header">
-            <h2 className="help-home--title">Récupérer mes achats</h2>
+            <h2 className="help-home--title">Don</h2>
           </div>
           <div className="card-body">
-          <div className="mt-1">
+            <div className="mt-1">
               Si vous avez réinstallé cette app ou vidé votre stockage, cliquez sur le bouton ci-dessous pour récupérer vos achats.
             </div>
 
-            <div className="mt-3">
-              <Link to="/aide/recuperer">
-                <button type="button" className="btn btn-qrqc w-100">Récupérer mes achats</button>
-              </Link>
+            <div className="mt-3 mb-1">
+              <PaypalButton description="Don" price={this.state.price} routeOnCompleted="/aide/merci" />
             </div>
           </div>
         </div>
