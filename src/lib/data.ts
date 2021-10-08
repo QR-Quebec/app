@@ -9,16 +9,16 @@ import { arrayMove } from 'react-movable';
 import { PassportList, PassportListItem } from 'types/PassportList';
 
 export const getUserUuid = async (): Promise<string> => {
-    let userUuid = await localForage.getItem<string>('userUuid');
+  let userUuid = await localForage.getItem<string>('userUuid');
 
-    if (userUuid === null) {
-      let newUserUuid = uuidv4();
-      await localForage.setItem('userUuid', newUserUuid);
+  if (userUuid === null) {
+    let newUserUuid = uuidv4();
+    await localForage.setItem('userUuid', newUserUuid);
 
-      return newUserUuid;
-    }
+    return newUserUuid;
+  }
 
-    return userUuid;
+  return userUuid;
 }
 
 function qrDataKey() {
@@ -37,7 +37,7 @@ function qrDataHash(qrData: string | Array<string>) {
   return sha1(qrData);
 }
 
-function encryptQrData(qrData : string | Array<string>) {
+function encryptQrData(qrData: string | Array<string>) {
   if (Array.isArray(qrData)) {
     return qrData.map((chunk) => {
       return encryptQrData(chunk);
@@ -52,7 +52,7 @@ function encryptQrData(qrData : string | Array<string>) {
   return encryptedHex;
 }
 
-function decryptQrData(encryptedQrData : string | Array<string>) {
+function decryptQrData(encryptedQrData: string | Array<string>) {
   if (Array.isArray(encryptedQrData)) {
     return encryptedQrData.map((chunk) => {
       return decryptQrData(chunk);
@@ -143,11 +143,25 @@ export const getPassportCount = async (): Promise<number> => {
   return passportCount || 0;
 }
 
+export const getDonation = async (): Promise<string> => {
+  let donation = await localForage.getItem<string>('donation');
+
+  if (!donation) {
+    return '';
+  }
+
+  return donation;
+}
+
+export const setDonation = async (donation: string): Promise<void> => {
+  await localForage.setItem('donation', donation);
+}
+
 export const initData = () => {
-  const asyncInitData = async() => {
+  const asyncInitData = async () => {
     getUserUuid();
 
-    let passportVersion: number|null = await localForage.getItem<number>('passportVersion');
+    let passportVersion: number | null = await localForage.getItem<number>('passportVersion');
 
     //Data migrations
     if (!passportVersion || passportVersion < 2) {

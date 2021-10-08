@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import './PaypalButton.scss';
 
 //Libs
+import { setDonation } from 'lib/data';
 import { syncUsageStats } from 'lib/sync';
 
 //PayPal
@@ -55,6 +56,8 @@ class PaypalButton extends Component<Props, State> {
 
 
     async paypalApprove(data: OnApproveData, actions: OnApproveActions) {
+        setDonation(this.props.price);
+
         this.props.history.push(this.props.routeOnCompleted);
         return;
     }

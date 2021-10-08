@@ -35,6 +35,7 @@ const PassportsInvalidSignature = React.lazy(() => import(/* webpackPrefetch: tr
 const PassportsInvalidError = React.lazy(() => import(/* webpackPrefetch: true */ "./passports/_Pages").then((module) => ({ default: module.PassportsInvalidError })));
 
 const HelpHome = React.lazy(() => import(/* webpackPrefetch: true */ "./help/_Pages").then((module) => ({ default: module.HelpHome })));
+const HelpDonated = React.lazy(() => import(/* webpackPrefetch: true */ "./help/_Pages").then((module) => ({ default: module.HelpDonated })));
 
 let TestHome: any = null;
 
@@ -123,6 +124,7 @@ class App extends Component<Props, State> {
                       <Route path="/presenter/invalide/erreur" exact component={PassportsInvalidError} />
 
                       <Route path="/aide" exact component={HelpHome} />
+                      <Route path="/aide/merci" exact component={HelpDonated} />
 
                       {(process.env.REACT_APP_ENV === 'development') &&
                         <Route path="/test" exact component={TestHome} />
