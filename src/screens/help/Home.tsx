@@ -23,9 +23,17 @@ class HelpHome extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
+    this.setAmount = this.setAmount.bind(this);
+
     this.state = {
-      price: '0.99',
+      price: '2.00',
     };
+  }
+
+  setAmount(amount: string) {
+    this.setState({
+      price: amount,
+    });
   }
 
   render() {
@@ -65,6 +73,35 @@ class HelpHome extends Component<Props, State> {
 
         <div className="card mt-3">
           <div className="card-header">
+            <h2 className="help-home--title">Don</h2>
+          </div>
+          <div className="card-body">
+            <div className="mt-1">
+              Si vous avez réinstallé cette app ou vidé votre stockage, cliquez sur le bouton ci-dessous pour récupérer vos achats.
+            </div>
+
+            <div className="mt-3 d-flex">
+              <label htmlFor="amount" className="form-label h-100 mt-2 me-2">Montant :</label>
+              <select id="amount" className="form-select w-auto" onChange={e => this.setAmount(e.target.value)}>
+                <option value="1.00">1 $</option>
+                <option value="2.00" selected>2 $</option>
+                <option value="3.00">3 $</option>
+                <option value="4.00">4 $</option>
+                <option value="5.00">5 $</option>
+                <option value="10.00">10 $</option>
+                <option value="15.00">15 $</option>
+                <option value="20.00">20 $</option>
+              </select>
+            </div>
+
+            <div className="mt-3 mb-1">
+              <PaypalButton description="Don" price={this.state.price} routeOnCompleted="/aide/merci" />
+            </div>
+          </div>
+        </div>
+
+        <div className="card mt-3">
+          <div className="card-header">
             <h2 className="help-home--title">Support</h2>
           </div>
           <div className="card-body">
@@ -78,21 +115,6 @@ class HelpHome extends Component<Props, State> {
               <LinkIcon className="help-home--icon" height="16px" width="16px" color={colors.qrqc} />
               Web&nbsp;:&nbsp;
               <a href="https://support.kyber.studio" target="_blank" rel="noreferrer">https://support.kyber.studio</a>
-            </div>
-          </div>
-        </div>
-
-        <div className="card mt-3">
-          <div className="card-header">
-            <h2 className="help-home--title">Don</h2>
-          </div>
-          <div className="card-body">
-            <div className="mt-1">
-              Si vous avez réinstallé cette app ou vidé votre stockage, cliquez sur le bouton ci-dessous pour récupérer vos achats.
-            </div>
-
-            <div className="mt-3 mb-1">
-              <PaypalButton description="Don" price={this.state.price} routeOnCompleted="/aide/merci" />
             </div>
           </div>
         </div>
