@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 //Version
 import * as PackageJson from '../../../package.json';
@@ -77,20 +76,20 @@ class HelpHome extends Component<Props, State> {
           </div>
           <div className="card-body">
             <div className="mt-1">
-              Si vous avez réinstallé cette app ou vidé votre stockage, cliquez sur le bouton ci-dessous pour récupérer vos achats.
+              Si vous appréciez cette application, vous pouvez soutenir son développement en faisant un don.
             </div>
 
             <div className="mt-3 d-flex">
               <label htmlFor="amount" className="form-label h-100 mt-2 me-2">Montant :</label>
               <select id="amount" className="form-select w-auto" onChange={e => this.setAmount(e.target.value)}>
-                <option value="1.00">1 $</option>
-                <option value="2.00" selected>2 $</option>
-                <option value="3.00">3 $</option>
-                <option value="4.00">4 $</option>
-                <option value="5.00">5 $</option>
-                <option value="10.00">10 $</option>
-                <option value="15.00">15 $</option>
-                <option value="20.00">20 $</option>
+                <option value="1">1 $</option>
+                <option value="2" selected>2 $</option>
+                <option value="3">3 $</option>
+                <option value="4">4 $</option>
+                <option value="5">5 $</option>
+                <option value="10">10 $</option>
+                <option value="15">15 $</option>
+                <option value="20">20 $</option>
               </select>
             </div>
 

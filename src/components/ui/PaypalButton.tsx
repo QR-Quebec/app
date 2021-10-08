@@ -56,7 +56,7 @@ class PaypalButton extends Component<Props, State> {
 
 
     async paypalApprove(data: OnApproveData, actions: OnApproveActions) {
-        setDonation(this.props.price);
+        setDonation(Number.parseInt(this.props.price));
 
         this.props.history.push(this.props.routeOnCompleted);
         return;

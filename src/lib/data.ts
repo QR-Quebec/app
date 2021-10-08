@@ -143,18 +143,24 @@ export const getPassportCount = async (): Promise<number> => {
   return passportCount || 0;
 }
 
-export const getDonation = async (): Promise<string> => {
-  let donation = await localForage.getItem<string>('donation');
+export const getDonation = async (): Promise<number> => {
+  let donation = await localForage.getItem<number>('donation');
 
   if (!donation) {
-    return '';
+    return 0;
   }
 
   return donation;
 }
 
-export const setDonation = async (donation: string): Promise<void> => {
-  await localForage.setItem('donation', donation);
+export const setDonation = async (addDonation: number): Promise<void> => {
+  let donation = await localForage.getItem<number>('donation');
+
+  if (!donation) {
+    donation = 0;
+  }
+
+  await localForage.setItem('donation', donation + addDonation);
 }
 
 export const initData = () => {
