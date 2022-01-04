@@ -88,7 +88,7 @@ class PassportContent extends Component<Props, State> {
 
               {this.state.passportData.patient.names.slice(1).map((name, i) => {
                 return (
-                  <div key={'name-'+i.toString()} className="passport-content--subtitle">{name.toLocaleUpperCase()}</div>
+                  <div key={'name-' + i.toString()} className="passport-content--subtitle">{name.toLocaleUpperCase()}</div>
                 );
               })}
             </div>
@@ -101,23 +101,25 @@ class PassportContent extends Component<Props, State> {
 
 
             <div className="flex-fill d-flex flex-column">
-                <div className="passport-content--title">{formatLongDate(this.state.passportData.patient.birthDate)}</div>
+              <div className="passport-content--title">{formatLongDate(this.state.passportData.patient.birthDate)}</div>
 
+              {this.state.passportData.patient.gender &&
                 <div className="passport-content--subtitle">Sexe: {formatGender(this.state.passportData.patient.gender)}</div>
+              }
             </div>
           </li>
         </ol>
 
-        {this.state.passportData.doses.map((dose: PassportDataDose , i: number) => {
+        {this.state.passportData.doses.map((dose: PassportDataDose, i: number) => {
           return (
-            <div key={'dose-'+i.toString()} className="mt-2">
-              Dose { dose.doseNumber }:
+            <div key={'dose-' + i.toString()} className="mt-2">
+              Dose {dose.doseNumber}:
 
               <ol className="list-group mt-2">
                 <li className="list-group-item d-flex align-items-center">
                   <div className="passport-content--badged-image me-3">
                     <Syringe height="36px" width="36px" color={colors.qrqc} />
-                    <span className="badge rounded-pill bg-qrqc passport-content--badged-image-badge">{ dose.doseNumber }</span>
+                    <span className="badge rounded-pill bg-qrqc passport-content--badged-image-badge">{dose.doseNumber}</span>
                   </div>
 
                   <div className="flex-fill d-flex flex-column">
@@ -137,24 +139,26 @@ class PassportContent extends Component<Props, State> {
                   </div>
                 </li>
 
-                <li className="list-group-item d-flex align-items-center">
-                  <div className="me-3">
-                    <MapMarkerAlt height="36px" width="36px" color={colors.qrqc} />
-                  </div>
+                {dose.notes &&
+                  <li className="list-group-item d-flex align-items-center">
+                    <div className="me-3">
+                      <MapMarkerAlt height="36px" width="36px" color={colors.qrqc} />
+                    </div>
 
-                  <div className="flex-fill d-flex flex-column">
-                    <div className="passport-content--title">{dose.location}</div>
-                    <div className="passport-content--subtitle">Notes: {dose.notes}</div>
-                  </div>
-                </li>
+                    <div className="flex-fill d-flex flex-column">
+                      <div className="passport-content--title">{dose.location}</div>
+                      <div className="passport-content--subtitle">Notes: {dose.notes}</div>
+                    </div>
+                  </li>
+                }
               </ol>
             </div>
           );
         })}
 
-        {this.state.passportData.testResults.map((testResult: PassportDataTestResult , i: number) => {
+        {this.state.passportData.testResults.map((testResult: PassportDataTestResult, i: number) => {
           return (
-            <div key={'result-'+i.toString()} className="mt-2">
+            <div key={'result-' + i.toString()} className="mt-2">
               Résultats de tests:
               <ol className="list-group mt-2">
                 <li className="list-group-item d-flex align-items-center">

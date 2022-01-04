@@ -73,9 +73,9 @@ export const formatAgo = (days: number | null): string => {
     let date = new Date();
     date.setDate(date.getDate() - days);
 
-    let months = (date.getFullYear() - today.getFullYear()) * 12;
-    months -= date.getMonth();
-    months += today.getMonth();
+    let months = (today.getFullYear() - date.getFullYear()) * 12;
+    months += date.getMonth();
+    months -= today.getMonth();
 
     let years = Math.floor(months / 12);
 
@@ -113,11 +113,11 @@ export const formatGender = (gender: string) => {
 
 export const formatVaccine = (vaccineCode: string) => {
     if (vaccineCode === '208') {
-        return 'Pfizer-BioNTech';
+        return 'Pfizer-BioNTech: Comirnaty';
     } else if (vaccineCode === '207') {
-        return 'Moderna';
+        return 'Moderna: Spikevax';
     } else if (vaccineCode === '210') {
-        return 'AstraZeneca / Covishield';
+        return 'AstraZeneca: Vaxzevria';
     } else if (vaccineCode === '211') {
         return 'Novavax';
     } else if (vaccineCode === '212') {

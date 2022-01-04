@@ -14,7 +14,6 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 //Libs
 import * as localForage from 'localforage';
 import { initData } from 'lib/data';
-import { syncUsageStats } from 'lib/sync';
 
 //Icones
 import Logo from 'assets/svg/icon.svg';
@@ -63,11 +62,6 @@ class App extends Component<Props, State> {
 
     //Init storage
     initData();
-  }
-
-  componentDidMount() {
-    //Update usage stats
-    syncUsageStats();
   }
 
   render() {

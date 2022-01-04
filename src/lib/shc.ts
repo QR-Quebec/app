@@ -161,23 +161,17 @@ function parseSHC(header: any, payload: any, qrData: string) {
                     && entry.resource.patient.reference === 'resource:0'
                     && entry.resource.status
                     && entry.resource.status.toLowerCase() === 'completed'
-                    && entry.resource.protocolApplied
-                    && entry.resource.protocolApplied.targetDisease
-                    && entry.resource.protocolApplied.targetDisease.coding
-                    && entry.resource.protocolApplied.targetDisease.coding[0]
-                    && entry.resource.protocolApplied.targetDisease.coding[0].code
-                    && entry.resource.protocolApplied.targetDisease.coding[0].code === '840536004'
             );
 
-            result.doses = doses.map((dose: any) => {
+            result.doses = doses.map((dose: any, doseIndex: number) => {
                 return {
-                    doseNumber: dose.resource.protocolApplied.doseNumber,
+                    doseNumber: dose.resource.protocolApplied?.doseNumber || doseIndex + 1,
                     date: new Date(dose.resource.occurrenceDateTime),
                     daysAgo: calcDaysAgo(dose.resource.occurrenceDateTime),
-                    location: dose.resource.location.display,
+                    location: dose.resource.location?.display,
                     vaccineCode: dose.resource.vaccineCode.coding[0].code,
                     vaccineLot: dose.resource.lotNumber,
-                    notes: dose.resource.note.map((note: any) => note.text),
+                    notes: dose.resource.note?.map((note: any) => note.text),
                 }
             });
 
@@ -244,7 +238,7 @@ export async function decodeSHC(qrData: string | Array<string>) {
                 throw new Error('Chunked SHC part count mismatch.');
             }
 
-            if (shcPartNum !== index+1) {
+            if (shcPartNum !== index + 1) {
                 throw new Error('Chunked SHC part order mismatch.');
             }
 

@@ -7,7 +7,6 @@ import './PaypalButton.scss';
 
 //Libs
 import { setDonation } from 'lib/data';
-import { syncUsageStats } from 'lib/sync';
 
 //PayPal
 import { PayPalButtons } from '@paypal/react-paypal-js';
@@ -27,10 +26,6 @@ class PaypalButton extends Component<Props, State> {
         this.paypalApprove = this.paypalApprove.bind(this);
         this.paypalCancel = this.paypalCancel.bind(this);
         this.paypalError = this.paypalError.bind(this);
-    }
-
-    async componentDidMount() {
-        syncUsageStats();
     }
 
     async paypalClick(data: UnknownObject, actions: OnClickActions) {
