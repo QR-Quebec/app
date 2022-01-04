@@ -1,4 +1,4 @@
 import HelpHome from './Home';
-import HelpRestorePurchases from './RestorePurchases';
+import HelpDonated from './Donated';
 
-export { HelpHome, HelpRestorePurchases };
+export { HelpHome, HelpDonated };

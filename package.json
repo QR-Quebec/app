@@ -1,6 +1,6 @@
 {
     "name": "qr-quebec",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "private": true,
     "homepage": "/",
     "dependencies": {
@@ -55,10 +55,10 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "env-cmd -f .env.development react-scripts build",
-        "build:dev": "env-cmd -f .env.dev react-scripts build && dev\\copy-build-to-app.bat",
-        "build:beta": "env-cmd -f .env.beta react-scripts build && dev\\copy-build-to-app.bat",
-        "build:staging": "env-cmd -f .env.staging react-scripts build && dev\\copy-build-to-app.bat",
-        "build:production": "env-cmd -f .env.production react-scripts build && dev\\copy-build-to-app.bat",
+        "build:dev": "env-cmd -f .env.dev react-scripts build",
+        "build:beta": "env-cmd -f .env.beta react-scripts build",
+        "build:staging": "env-cmd -f .env.staging react-scripts build",
+        "build:production": "env-cmd -f .env.production react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
