@@ -74,10 +74,13 @@ export const formatAgo = (days: number | null): string => {
     date.setDate(date.getDate() - days);
 
     let months = (today.getFullYear() - date.getFullYear()) * 12;
-    months += date.getMonth();
-    months -= today.getMonth();
+    months -= date.getMonth();
+    months += today.getMonth();
 
     let years = Math.floor(months / 12);
+
+    console.log(months);
+    console.log(years);
 
     if (years > 0) {
         ago += years.toString() + ' an' + (years > 1 ? 's' : '');
