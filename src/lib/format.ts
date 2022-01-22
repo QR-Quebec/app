@@ -79,9 +79,6 @@ export const formatAgo = (days: number | null): string => {
 
     let years = Math.floor(months / 12);
 
-    console.log(months);
-    console.log(years);
-
     if (years > 0) {
         ago += years.toString() + ' an' + (years > 1 ? 's' : '');
         months -= (years * 12);
@@ -115,8 +112,10 @@ export const formatGender = (gender: string) => {
 }
 
 export const formatVaccine = (vaccineCode: string) => {
-    if (vaccineCode === '208') {
+    if (vaccineCode === '208' || vaccineCode === '217') {
         return 'Pfizer-BioNTech: Comirnaty';
+    } else if (vaccineCode === '218' || vaccineCode === '219') {
+        return 'Pfizer-BioNTech: Comirnaty (5-12 ans)';
     } else if (vaccineCode === '207') {
         return 'Moderna: Spikevax';
     } else if (vaccineCode === '210') {
